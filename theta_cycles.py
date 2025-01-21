@@ -70,9 +70,9 @@ def filt(f, k, Q, prec=None):
     weights = []
     phi_Q = phi(Q)
     for k0 in [i for i in range(1, k) if (i-k) % phi_Q == 0][::-1]:
-        M_k0_Q = modular_form_basis(k0, Q, bd)
-        f_modQ = vector(QQ, coeffs(f_qexp, bd))[:bd]
-        V = VectorSpace(QQ, bd)
+        M_k0_Q = modular_form_basis(k0, Q, prec)
+        f_modQ = vector(QQ, coeffs(f_qexp, bd))[:prec]
+        V = VectorSpace(QQ, prec)
         M_k0_vecs = V.subspace([V(v) for v in M_k0_Q])
         if f_modQ in M_k0_vecs:
             weights.append(k0)
@@ -104,10 +104,10 @@ def theta_cycle(f, k, Q, prec=None):
 
     # Determine weight of image of theta(f) modulo Q (see Chen-Kiming)
     if Q.is_prime():
-        init_wt = filt(f, k, Q) + p + 1
+        init_wt = filt(f, k, Q, prec) + p + 1
         weight_step = p + 1
     else:
-        init_wt = filt(f, k, Q) + 2 + 2*phi_Q
+        init_wt = filt(f, k, Q, prec) + 2 + 2*phi_Q
         weight_step = 2 + 2*phi_Q
 
     # Initializing theta cycle
