@@ -35,7 +35,7 @@ def theta(f, k, Q, prec=None):
     bd = int((k * Gamma1(p).index()) / 12) + 1
     if prec is None:
         prec = bd
-    return sum(((n * f[n])%Q) * q**n for n in range(len(coeffs(f_qexp, prec))))
+    return sum(((n * f[n])%Q) * q**n for n in range(len(coeffs(f, prec))))
 
 
 def phi(Q):
