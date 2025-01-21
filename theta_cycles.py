@@ -37,7 +37,7 @@ def theta(f, k, Q, prec=None):
         prec = bd
     return sum(((n * f[n])%Q) * q**n for n in range(len(coeffs(f, prec))))
 
-
+@lru_cache(maxsize=None)
 def phi(Q):
     """
     Euler totient function
